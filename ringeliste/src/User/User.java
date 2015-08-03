@@ -5,6 +5,10 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+
+/**
+ * Created by GameMonkey on 03-08-2015.
+ */
 public class User {
 
     static LinkedList<User> BeforeTodayList;
@@ -97,7 +101,7 @@ public class User {
     }
     //Print linklist to docment
     public static void PrintList () {
-        System.out.println("FÃ¸r idag");
+        System.out.println("Før idag");
         for (int i = 0; i < BeforeTodayList.size(); i++) {
             System.out.println(BeforeTodayList.get(i).Name + " " + BeforeTodayList.get(i).Date);
         }
@@ -107,3 +111,4 @@ public class User {
         }
     }
 }
+

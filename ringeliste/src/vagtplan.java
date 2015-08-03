@@ -1,3 +1,7 @@
+/**
+ * Created by GameMonkey on 03-08-2015.
+ */
+
 import java.io.File;
 import java.io.*;
 import java.util.Date;
@@ -7,7 +11,6 @@ import jxl.*;
 import jxl.read.biff.BiffException;
 
 import User.User;
-
 
 public class vagtplan {
     public static void main(String[] args)throws BiffException, IOException {

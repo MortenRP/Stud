@@ -18,7 +18,7 @@ public class Schedule {
         PhoneLists phoneLists = new PhoneLists();
 
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Date userDate = null;
+        Date shiftDate = null;
 
         //@ToDo Rewrite to be generic when a GUI is set up.
         File item = new File("heey.xls");
@@ -28,29 +28,23 @@ public class Schedule {
 
         int rows = sheet.getRows();
         int num = 1;
-        //loop over the all the rows in the exal
+        //loop over the all the rows in the excel
         while(num < rows)
         {
-            Cell a1 = sheet.getCell(0,num);
-            Cell a2 = sheet.getCell(3,num);
-            Cell a3 = sheet.getCell(11,num);
-
-            String dateString = a1.getContents();
-            String name = a2.getContents();
-            String workAeare = a3.getContents();
+            String dateString = sheet.getCell(0,num).getContents();
+            String name = sheet.getCell(3,num).getContents();
+            String workArea = sheet.getCell(11,num).getContents();
 
             try
             {
-                userDate = df.parse(dateString);
-                //Print function for debug.
-                //System.out.println("Date in dd-MM-yyyy format is: "+df.format(userDate));
+                shiftDate = df.parse(dateString);
             }
             catch (Exception ex )
             {
                 System.out.println(ex.getMessage());
             }
 
-            User user = new User(userDate, name, workAeare);
+            User user = new User(shiftDate, name, workArea);
             phoneLists.addUser(user);
             num++;
         }

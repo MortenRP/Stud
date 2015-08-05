@@ -50,16 +50,29 @@ public class PhoneLists {
             boolean userAdded = false;
             int i = 0;
 
-            while(userAdded == false && i < list.size()){
-                if (user.date.after(list.get(i).date)) {
-                    list.add(i, user);
-                    userAdded = true;
+            //@ToDo See if there is a way to call "before" og "after" depending on list type.
+            if(user.date.before(todayDate)){
+                while (userAdded == false && i < list.size()) {
+                    if (user.date.before(list.get(i).date)) {
+                        list.add(i, user);
+                        userAdded = true;
+                    }
+                    ++i;
                 }
-                ++i;
             }
-            if(!userAdded){
+            else {
+                while (userAdded == false && i < list.size()) {
+                    if (user.date.after(list.get(i).date)) {
+                        list.add(i, user);
+                        userAdded = true;
+                    }
+                    ++i;
+                }
+            }
+            if (!userAdded) {
                 list.add(user);
             }
+
         }
     }
 

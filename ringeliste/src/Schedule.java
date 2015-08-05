@@ -20,6 +20,7 @@ public class Schedule {
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         Date userDate = null;
 
+        //@ToDo Rewrite to be generic when a GUI is set up.
         File item = new File("heey.xls");
         Workbook workbook = Workbook.getWorkbook(item);
         Sheet sheet = workbook.getSheet(0);
@@ -50,12 +51,12 @@ public class Schedule {
             }
 
             User user = new User(userDate, name, workAeare);
-            phoneLists.QueueCheck(user);
+            phoneLists.addUser(user);
             num++;
         }
 
         workbook.close();
-        phoneLists.QueueLoop();
+        phoneLists.createLists();
         phoneLists.PrintList();
     }
 }

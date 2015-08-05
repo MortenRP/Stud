@@ -1,8 +1,6 @@
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.HashMap;
 
 import User.User;
 
@@ -11,94 +9,71 @@ import User.User;
  */
 public class PhoneLists {
 
-    private LinkedList<User> BeforeTodayList;
-    private LinkedList<User> AfterTodayList;
-    private Queue<User> queue;
-    private Date TodayDate;
-    private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+    private LinkedList<User> beforeTodayList;
+    private LinkedList<User> afterTodayList;
+    private HashMap<String, User> userByName;
+    private Date todayDate;
 
     public PhoneLists() {
-        BeforeTodayList = new LinkedList<User>();
-        AfterTodayList = new LinkedList<User>();
-        queue = new LinkedList<User>();
-        TodayDate = new Date();
-        System.out.println(TodayDate);
+        beforeTodayList = new LinkedList<User>();
+        afterTodayList = new LinkedList<User>();
+        userByName = new HashMap<String, User>();
+        todayDate = new Date();
     }
 
-    //Add user to queue
-    public void addQueue(User user) {
-        queue.add(user);
-    }
-    //Add user to linklist
-    public void addList(User user) {
-        loop:
-        if (user.date.after(TodayDate)) {
-            if (AfterTodayList.size() < 1) {
-                AfterTodayList.add(user);
-            }
-            else {
-                for (int i = 0; i < AfterTodayList.size(); i++) {
-                    if (user.date.after(AfterTodayList.get(i).date)) {
-                        AfterTodayList.add(i, user);
-                        break loop;
-                    }
-                }
-                AfterTodayList.add(user);
+    //Adds a user to the dictionary or updates if the person is already included
+    public void addUser(User user){
+        if(userByName.get(user.name) != null){
+            Date savedDate = userByName.get(user.name).date;
+            if(user.date.after(savedDate)){
+                userByName.put(user.name, user);
             }
         }
         else{
-            if (BeforeTodayList.size() < 1) {
-                BeforeTodayList.add(user);
+            userByName.put(user.name, user);
+        }
+    }
+
+    //Creates the two lists of users from the users in the dictionary
+    public void createLists(){
+        for(String name : userByName.keySet()){
+            User user = userByName.get(name);
+            LinkedList<User> list;
+
+            if(user.date.before(todayDate)){
+                list = beforeTodayList;
             }
             else {
-                for (int i = 0; i < BeforeTodayList.size(); i++) {
-                    if (user.date.before(BeforeTodayList.get(i).date)) {
-                        BeforeTodayList.add(i, user);
-                        break loop;
-                    }
+                list = afterTodayList;
+            }
+
+            boolean userAdded = false;
+            int i = 0;
+
+            while(userAdded == false && i < list.size()){
+                if (user.date.after(list.get(i).date)) {
+                    list.add(i, user);
+                    userAdded = true;
                 }
-                BeforeTodayList.addLast(user);
+                ++i;
+            }
+            if(!userAdded){
+                list.add(user);
             }
         }
     }
-    // Check if user are in queue and if date are the newest
-    public void QueueCheck(User user) {
 
-        boolean found = false;
-
-        for (User kk : queue) {
-            //Check if user is in queue
-            if (kk.name == user.name) {
-                found = true;
-                //Check is the date is the newest
-                if (user.date.after(kk.date)) {
-                    kk.date = user.date;
-                }
-            }
-        }
-
-        if(found != true || queue.peek() == null) {
-            addQueue(user);
-        }
-    }
-    //Take user fra queue to linklist
-    public void QueueLoop () {
-        while (queue.peek() != null) {
-            User hh = queue.poll();
-            addList(hh);
-            //System.out.println(hh.Name + " " + hh.Date);
-        }
-        System.out.println("Don");
-    }
-    //Print linklist to docment
+    //Print the two lists.
+    //@ToDo rewrite to print to file.
     public void PrintList() {
         System.out.println("Før idag");
-        for (int i = 0; i < BeforeTodayList.size(); i++) {
-            System.out.println(BeforeTodayList.get(i).name + " " + BeforeTodayList.get(i).date);
+        for (int i = 0; i < beforeTodayList.size(); i++) {
+            System.out.println(beforeTodayList.get(i).name + " " + beforeTodayList.get(i).date);
         }
         System.out.println("Efter idag");
-        for (int i = 0; i < AfterTodayList.size(); i++) {
-            System.out.println(AfterTodayList.get(i).name + " " + AfterTodayList.get(i).date);
+        for (int i = 0; i < afterTodayList.size(); i++) {
+            System.out.println(afterTodayList.get(i).name + " " + afterTodayList.get(i).date);
         }
+
     }
 }

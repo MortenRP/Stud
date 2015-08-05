@@ -32,13 +32,13 @@ public class PhoneLists {
     //Add user to linklist
     public void addList(User user) {
         loop:
-        if (user.Date.after(TodayDate)) {
+        if (user.date.after(TodayDate)) {
             if (AfterTodayList.size() < 1) {
                 AfterTodayList.add(user);
             }
             else {
                 for (int i = 0; i < AfterTodayList.size(); i++) {
-                    if (user.Date.after(AfterTodayList.get(i).Date)) {
+                    if (user.date.after(AfterTodayList.get(i).date)) {
                         AfterTodayList.add(i, user);
                         break loop;
                     }
@@ -52,7 +52,7 @@ public class PhoneLists {
             }
             else {
                 for (int i = 0; i < BeforeTodayList.size(); i++) {
-                    if (user.Date.before(BeforeTodayList.get(i).Date)) {
+                    if (user.date.before(BeforeTodayList.get(i).date)) {
                         BeforeTodayList.add(i, user);
                         break loop;
                     }
@@ -68,11 +68,11 @@ public class PhoneLists {
 
         for (User kk : queue) {
             //Check if user is in queue
-            if (kk.Name == user.Name) {
+            if (kk.name == user.name) {
                 found = true;
                 //Check is the date is the newest
-                if (user.Date.after(kk.Date)) {
-                    kk.Date = user.Date;
+                if (user.date.after(kk.date)) {
+                    kk.date = user.date;
                 }
             }
         }
@@ -94,11 +94,11 @@ public class PhoneLists {
     public void PrintList() {
         System.out.println("Før idag");
         for (int i = 0; i < BeforeTodayList.size(); i++) {
-            System.out.println(BeforeTodayList.get(i).Name + " " + BeforeTodayList.get(i).Date);
+            System.out.println(BeforeTodayList.get(i).name + " " + BeforeTodayList.get(i).date);
         }
         System.out.println("Efter idag");
         for (int i = 0; i < AfterTodayList.size(); i++) {
-            System.out.println(AfterTodayList.get(i).Name + " " + AfterTodayList.get(i).Date);
+            System.out.println(AfterTodayList.get(i).name + " " + AfterTodayList.get(i).date);
         }
     }
 }

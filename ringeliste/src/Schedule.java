@@ -41,8 +41,8 @@ public class Schedule {
             try
             {
                 userDate = df.parse(dateString);
-                //System.out.println("Date: " + d1);
-                System.out.println("Date in dd-MM-yyyy format is: "+df.format(userDate));
+                //Print function for debug.
+                //System.out.println("Date in dd-MM-yyyy format is: "+df.format(userDate));
             }
             catch (Exception ex )
             {

@@ -67,12 +67,12 @@ public class PhoneLists {
     //@ToDo rewrite to print to file.
     public void PrintList() {
         System.out.println("Før idag");
-        for (int i = 0; i < beforeTodayList.size(); i++) {
-            System.out.println(beforeTodayList.get(i).name + " " + beforeTodayList.get(i).date);
+        for(User user : beforeTodayList) {
+            System.out.println(user.name + " " + user.date);
         }
         System.out.println("Efter idag");
-        for (int i = 0; i < afterTodayList.size(); i++) {
-            System.out.println(afterTodayList.get(i).name + " " + afterTodayList.get(i).date);
+        for(User user : afterTodayList) {
+            System.out.println(user.name + " " + user.date);
         }
 
     }

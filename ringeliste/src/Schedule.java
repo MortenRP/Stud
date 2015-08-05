@@ -12,19 +12,19 @@ import jxl.read.biff.BiffException;
 
 import User.User;
 
-public class vagtplan {
+public class Schedule {
     public static void main(String[] args)throws BiffException, IOException {
 
-        User user;
-
-        User.make();
+        PhoneLists phoneLists = new PhoneLists();
 
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Date userDato = null;
+        Date userDate = null;
 
         File item = new File("heey.xls");
         Workbook workbook = Workbook.getWorkbook(item);
         Sheet sheet = workbook.getSheet(0);
+
+
         int rows = sheet.getRows();
         int num = 1;
         //loop over the all the rows in the exal
@@ -40,23 +40,22 @@ public class vagtplan {
 
             try
             {
-                userDato = df.parse(dateString);
+                userDate = df.parse(dateString);
                 //System.out.println("Date: " + d1);
-                System.out.println("Date in dd-MM-yyyy format is: "+df.format(userDato));
+                System.out.println("Date in dd-MM-yyyy format is: "+df.format(userDate));
             }
             catch (Exception ex )
             {
-                System.out.println(ex);
+                System.out.println(ex.getMessage());
             }
 
-            user = new User(userDato, name, workAeare);
-            //user.add(user);
-            user.QueueCheck(user);
-            //System.out.println(user.Name);
+            User user = new User(userDate, name, workAeare);
+            phoneLists.QueueCheck(user);
             num++;
         }
+
         workbook.close();
-        User.QueueLoop();
-        User.PrintList();
+        phoneLists.QueueLoop();
+        phoneLists.PrintList();
     }
 }

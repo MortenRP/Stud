@@ -44,13 +44,13 @@ public class Schedule {
                 System.out.println(ex.getMessage());
             }
 
-            User user = new User(shiftDate, name, workArea);
+            User user = new User(shiftDate  , name, workArea);
             phoneLists.addUser(user);
             num++;
         }
 
         workbook.close();
         phoneLists.createLists();
-        phoneLists.PrintList();
+        phoneLists.printLists();
     }
 }

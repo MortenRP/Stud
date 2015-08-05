@@ -50,7 +50,7 @@ public class PhoneLists {
             boolean userAdded = false;
             int i = 0;
 
-            //@ToDo See if there is a way to call "before" og "after" depending on list type.
+            //@ToDo See if there is a way to call "before" or "after" depending on list type.
             if(user.date.before(todayDate)){
                 while (userAdded == false && i < list.size()) {
                     if (user.date.before(list.get(i).date)) {
@@ -78,7 +78,7 @@ public class PhoneLists {
 
     //Print the two lists.
     //@ToDo rewrite to print to file.
-    public void PrintList() {
+    public void printLists() {
         System.out.println("Før idag");
         for(User user : beforeTodayList) {
             System.out.println(user.name + " " + user.date);

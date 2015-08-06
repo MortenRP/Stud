@@ -4,6 +4,7 @@
 
 import java.io.File;
 import java.io.*;
+import java.text.ParseException;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -39,7 +40,7 @@ public class Schedule {
             {
                 shiftDate = df.parse(dateString);
             }
-            catch (Exception ex )
+            catch (ParseException ex )
             {
                 System.out.println(ex.getMessage());
             }

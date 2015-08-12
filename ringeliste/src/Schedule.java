@@ -22,7 +22,7 @@ public class Schedule {
         Date shiftDate = null;
 
         //@ToDo Rewrite to be generic when a GUI is set up.
-        File item = new File("heey.xls");
+        File item = new File("src//Debug//heey.xls");
         Workbook workbook = Workbook.getWorkbook(item);
         Sheet sheet = workbook.getSheet(0);
 

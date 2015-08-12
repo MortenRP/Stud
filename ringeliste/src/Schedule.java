@@ -16,7 +16,7 @@ import User.User;
 public class Schedule {
     public static void main(String[] args)throws BiffException, IOException {
 
-        PhoneLists phoneLists = new PhoneLists();
+        PhoneList phoneList = new PhoneList();
 
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         Date shiftDate = null;
@@ -46,12 +46,12 @@ public class Schedule {
             }
 
             User user = new User(shiftDate  , name, workArea);
-            phoneLists.addUser(user);
+            phoneList.addUser(user);
             num++;
         }
 
         workbook.close();
-        phoneLists.createLists();
-        phoneLists.printLists();
+        phoneList.createLists();
+        phoneList.printLists();
     }
 }

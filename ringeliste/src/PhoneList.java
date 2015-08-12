@@ -7,14 +7,14 @@ import User.User;
 /**
  * Created by GameMonkey on 05-08-2015.
  */
-public class PhoneLists {
+public class PhoneList {
 
     private LinkedList<User> beforeTodayList;
     private LinkedList<User> afterTodayList;
     private HashMap<String, User> userByName;
     private Date todayDate;
 
-    public PhoneLists() {
+    public PhoneList() {
         beforeTodayList = new LinkedList<User>();
         afterTodayList = new LinkedList<User>();
         userByName = new HashMap<String, User>();

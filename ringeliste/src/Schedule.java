@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.*;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import jxl.*;
@@ -17,6 +18,7 @@ public class Schedule {
     public static void main(String[] args)throws BiffException, IOException {
 
         PhoneList phoneList = new PhoneList();
+        HashMap<String, PhoneList> phoneListsByFunction = new HashMap<String, PhoneList>();
 
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         Date shiftDate = null;

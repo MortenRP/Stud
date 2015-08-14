@@ -17,25 +17,31 @@ public class ScheduleWorker {
     
     public ScheduleWorker(Sheet sheet){
         this.sheet = sheet;
+        columnsByName = new HashMap<String, Integer>();
 
         columnsByName = findColumns();
         phoneListsByJobFunction = generatePhoneLists();
     }
 
-    public PhoneList getPhoneListForFunction(JobFunction jobFunction){
-        return null;
+    public PhoneList getPhoneListByJobFunction(JobFunction jobFunction){
+        return phoneListsByJobFunction.get(jobFunction);
     }
 
     // Creates a HashMap of the columns by name and give their position.
-    // Uses the sheet given to the constructor. 
+    // Uses the sheet given to the constructor.
     private HashMap<String, Integer> findColumns(){
-        HashMap<String, Integer> columnsByName = new HashMap<>();
+        HashMap<String, Integer> columns = new HashMap<String, Integer>();
         int columnSize = sheet.getColumns();
 
         for(int i = 0; i < columnSize; ++i){
-            columnsByName.put(sheet.getCell(i, 0).getContents(), i);
+            columns.put(sheet.getCell(i, 0).getContents(), i);
         }
-        return columnsByName;
+
+        return columns;
+    }
+
+    private void MapJobs(Sheet sheet){
+
     }
 
     private HashMap<JobFunction, PhoneList> generatePhoneLists(){

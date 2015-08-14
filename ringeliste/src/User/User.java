@@ -1,7 +1,7 @@
 package User;
 
 import java.util.Date;
-
+import User.JobFunction;
 
 
 /**
@@ -11,16 +11,37 @@ import java.util.Date;
 // data base.
 public class User {
 
-
+    private JobFunction jobFunction = null;
+    private String name = null;
+    private int userID;
+    //Public since everyone cen get and set it.
     public Date date = null;
-    public String name = null;
-    public String jobFunction = null;
 
-    public User (Date date, String name, String jobFunction){
+    //@ToDo Remove! Is here at the moment for debug in the Schedule Class.
+    public User (Date date, String name){
         this.date = date;
         this.name = name;
+    }
+
+    public User (Date date, String name, int userID, JobFunction jobFunction){
+        this.date = date;
+        this.name = name;
+        this.userID = userID;
         this.jobFunction = jobFunction;
     }
+
+    public JobFunction getJobFunction(){
+        return jobFunction;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getUserID(){
+        return userID;
+    }
+
 
 }
 

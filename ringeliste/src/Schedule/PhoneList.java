@@ -1,3 +1,5 @@
+package Schedule;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.HashMap;
@@ -23,14 +25,14 @@ public class PhoneList {
 
     //Adds a user to the dictionary or updates if the person is already included
     public void addUser(User user){
-        if(userByName.get(user.name) != null){
-            Date savedDate = userByName.get(user.name).date;
+        if(userByName.get(user.getName()) != null){
+            Date savedDate = userByName.get(user.getName()).date;
             if(user.date.after(savedDate)){
-                userByName.put(user.name, user);
+                userByName.put(user.getName(), user);
             }
         }
         else{
-            userByName.put(user.name, user);
+            userByName.put(user.getName(), user);
         }
     }
 
@@ -81,11 +83,11 @@ public class PhoneList {
     public void printLists() {
         System.out.println("Før idag");
         for(User user : beforeTodayList) {
-            System.out.println(user.name + " " + user.date);
+            System.out.println(user.getName() + " " + user.date);
         }
         System.out.println("Efter idag");
         for(User user : afterTodayList) {
-            System.out.println(user.name + " " + user.date);
+            System.out.println(user.getName() + " " + user.date);
         }
 
     }

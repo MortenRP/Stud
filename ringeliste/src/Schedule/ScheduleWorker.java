@@ -18,7 +18,6 @@ public class ScheduleWorker {
     
     public ScheduleWorker(WritableSheet sheet){
         this.sheet = sheet;
-        columnsByName = new HashMap<String, Integer>();
 
         findColumns();
         mapJobs();
@@ -32,7 +31,7 @@ public class ScheduleWorker {
     // Creates a HashMap of the columns by name and give their position.
     // Uses the sheet given to the constructor.
     private void findColumns(){
-        HashMap<String, Integer> columns = new HashMap<String, Integer>();
+        columnsByName = new HashMap<String, Integer>();
         int columnSize = sheet.getColumns();
 
         for(int i = 0; i < columnSize; ++i){
@@ -42,9 +41,9 @@ public class ScheduleWorker {
     }
 
     // Maps the functions from the original sheet to the groups Bartender, Music and Light.
+    // Uses regex to match.
     // @ToDo Find out if afryder/Busboy is bar or music.
     public void mapJobs(){
-
         String bar = ".*(B|b)ar.*";
         String light = ".*(L|l)ight.*";
         int column = columnsByName.get("Jobfunktion");
@@ -70,6 +69,6 @@ public class ScheduleWorker {
     }
 
     private void generatePhoneLists(){
-        
+
     }
 }

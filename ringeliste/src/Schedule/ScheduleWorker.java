@@ -70,6 +70,6 @@ public class ScheduleWorker {
     }
 
     private void generatePhoneLists(){
-        return null;
+        
     }
 }

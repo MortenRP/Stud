@@ -1,13 +1,9 @@
 package Schedule;
 
 import User.JobFunction;
-import User.User;
-import jxl.Cell;
 import jxl.write.Label;
 import jxl.write.WritableCell;
 import jxl.write.WritableSheet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import java.util.HashMap;
 
@@ -47,7 +43,7 @@ public class ScheduleWorker {
 
     // Maps the functions from the original sheet to the groups Bartender, Music and Light.
     // @ToDo Find out if afryder/Busboy is bar or music.
-    public void MapJobs(WritableSheet sheet){
+    public void mapJobs(WritableSheet sheet){
 
         String bar = ".*(B|b)ar.*";
         String light = ".*(L|l)ight.*";

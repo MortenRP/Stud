@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.*;
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 import jxl.read.biff.BiffException;
 import Schedule.ScheduleWorker;
 
@@ -16,7 +18,8 @@ public class TesterScheduleWorker {
 
         File item = new File("src//Debug//heey.xls");
         Workbook workbook = Workbook.getWorkbook(item);
-        Sheet sheet = workbook.getSheet(0);
+        WritableWorkbook copy = Workbook.createWorkbook(new File("updated_schedule.xls"), workbook);
+        WritableSheet sheet = copy.getSheet(0);
 
         ScheduleWorker scheduleWorker = new ScheduleWorker(sheet);
     }

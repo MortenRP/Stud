@@ -20,8 +20,9 @@ public class ScheduleWorker {
         this.sheet = sheet;
         columnsByName = new HashMap<String, Integer>();
 
-        columnsByName = findColumns();
-        phoneListsByJobFunction = generatePhoneLists();
+        findColumns();
+        mapJobs();
+        generatePhoneLists();
     }
 
     public PhoneList getPhoneListByJobFunction(JobFunction jobFunction){
@@ -30,20 +31,19 @@ public class ScheduleWorker {
 
     // Creates a HashMap of the columns by name and give their position.
     // Uses the sheet given to the constructor.
-    private HashMap<String, Integer> findColumns(){
+    private void findColumns(){
         HashMap<String, Integer> columns = new HashMap<String, Integer>();
         int columnSize = sheet.getColumns();
 
         for(int i = 0; i < columnSize; ++i){
-            columns.put(sheet.getCell(i, 0).getContents(), i);
+            columnsByName.put(sheet.getCell(i, 0).getContents(), i);
         }
 
-        return columns;
     }
 
     // Maps the functions from the original sheet to the groups Bartender, Music and Light.
     // @ToDo Find out if afryder/Busboy is bar or music.
-    public void mapJobs(WritableSheet sheet){
+    public void mapJobs(){
 
         String bar = ".*(B|b)ar.*";
         String light = ".*(L|l)ight.*";
@@ -69,7 +69,7 @@ public class ScheduleWorker {
         }
     }
 
-    private HashMap<JobFunction, PhoneList> generatePhoneLists(){
+    private void generatePhoneLists(){
         return null;
     }
 }

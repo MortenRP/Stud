@@ -43,7 +43,7 @@ public class ScheduleWorker {
     // Maps the functions from the original sheet to the groups Bartender, Music and Light.
     // Uses regex to match.
     // @ToDo Find out if afryder/Busboy is bar or music.
-    public void mapJobs(){
+    private void mapJobs(){
         String bar = ".*(B|b)ar.*";
         String light = ".*(L|l)ight.*";
         int column = columnsByName.get("Jobfunktion");

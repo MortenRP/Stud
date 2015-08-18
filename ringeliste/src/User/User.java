@@ -15,13 +15,7 @@ public class User {
     private int userID;
     //Public since everyone cen get and set it.
     public Date date = null;
-
-    //@ToDo Remove! Is here at the moment for debug in the Schedule Class.
-    public User (Date date, String name){
-        this.date = date;
-        this.name = name;
-    }
-
+    
     public User (Date date, String name, int userID, JobFunction jobFunction){
         this.date = date;
         this.name = name;

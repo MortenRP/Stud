@@ -78,17 +78,4 @@ public class PhoneList {
         }
     }
 
-    //Print the two lists.
-    //@ToDo rewrite to print to file.
-    public void printLists() {
-        System.out.println("Før idag");
-        for(User user : beforeTodayList) {
-            System.out.println(user.getName() + " " + user.date);
-        }
-        System.out.println("Efter idag");
-        for(User user : afterTodayList) {
-            System.out.println(user.getName() + " " + user.date);
-        }
-
-    }
 }

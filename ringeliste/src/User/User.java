@@ -15,7 +15,7 @@ public class User {
     private int userID;
     //Public since everyone cen get and set it.
     public Date date = null;
-    
+
     public User (Date date, String name, int userID, JobFunction jobFunction){
         this.date = date;
         this.name = name;
@@ -31,7 +31,7 @@ public class User {
         return name;
     }
 
-    public int getUserID(){
+    public int getID(){
         return userID;
     }
 

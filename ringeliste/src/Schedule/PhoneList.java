@@ -13,33 +13,33 @@ public class PhoneList {
 
     private LinkedList<User> beforeTodayList;
     private LinkedList<User> afterTodayList;
-    private HashMap<String, User> userByName;
+    private HashMap<Integer, User> userByID;
     private Date todayDate;
 
     public PhoneList() {
         beforeTodayList = new LinkedList<User>();
         afterTodayList = new LinkedList<User>();
-        userByName = new HashMap<String, User>();
+        userByID = new HashMap<Integer, User>();
         todayDate = new Date();
     }
 
     //Adds a user to the dictionary or updates if the person is already included
     public void addUser(User user){
-        if(userByName.get(user.getName()) != null){
-            Date savedDate = userByName.get(user.getName()).date;
+        if(userByID.get(user.getID()) != null){
+            Date savedDate = userByID.get(user.getID()).date;
             if(user.date.after(savedDate)){
-                userByName.put(user.getName(), user);
+                userByID.put(user.getID(), user);
             }
         }
         else{
-            userByName.put(user.getName(), user);
+            userByID.put(user.getID(), user);
         }
     }
 
     //Creates the two lists of users from the users in the dictionary
     public void createLists(){
-        for(String name : userByName.keySet()){
-            User user = userByName.get(name);
+        for(int id : userByID.keySet()){
+            User user = userByID.get(id);
             LinkedList<User> list;
 
             if(user.date.before(todayDate)){

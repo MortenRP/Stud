@@ -110,7 +110,12 @@ public class ScheduleWorker {
             }
             catch (IllegalArgumentException e){
                 //Happens if the job is an empty string.
+                //And that entry is ignored for the moment. 
             }
+        }
+
+        for(PhoneList list : phoneListsByJobFunction.values()){
+            list.createLists();
         }
     }
 }

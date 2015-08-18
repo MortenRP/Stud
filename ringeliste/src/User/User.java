@@ -1,7 +1,6 @@
 package User;
 
 import java.util.Date;
-import User.JobFunction;
 
 
 /**

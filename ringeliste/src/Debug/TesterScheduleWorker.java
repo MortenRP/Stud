@@ -9,17 +9,21 @@ import java.io.*;
 import jxl.Workbook;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import jxl.read.biff.BiffException;
 import Schedule.ScheduleWorker;
 
 public class TesterScheduleWorker {
-    public static void main(String args[]) throws BiffException, IOException{
+    public static void main(String args[]) throws WriteException, BiffException, IOException{
 
-        File item = new File("src//Debug//heey.xls");
+        File item = new File("src//Debug//one_complete_year.xls");
         Workbook workbook = Workbook.getWorkbook(item);
         WritableWorkbook copy = Workbook.createWorkbook(new File("updated_schedule.xls"), workbook);
         WritableSheet sheet = copy.getSheet(0);
 
         ScheduleWorker scheduleWorker = new ScheduleWorker(sheet);
+
+        copy.write();
+        copy.close();
     }
 }

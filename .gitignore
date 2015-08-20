@@ -12,8 +12,12 @@ ringeliste/out
 **/*.swp
 **/*.DS_STORE
 
+#The generated schedule
+**/updated_schedule.xls
+
 **/.idea/workspace.xml
 **/.idea/tasks.xml
+**/.idea/uiDesigner.xml
 
 #Emacs buffers and working files
 **/.#*

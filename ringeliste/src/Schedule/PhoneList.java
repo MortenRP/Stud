@@ -1,3 +1,5 @@
+package Schedule;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.HashMap;
@@ -7,37 +9,37 @@ import User.User;
 /**
  * Created by GameMonkey on 05-08-2015.
  */
-public class PhoneLists {
+public class PhoneList {
 
     private LinkedList<User> beforeTodayList;
     private LinkedList<User> afterTodayList;
-    private HashMap<String, User> userByName;
+    private HashMap<Integer, User> userByID;
     private Date todayDate;
 
-    public PhoneLists() {
+    public PhoneList() {
         beforeTodayList = new LinkedList<User>();
         afterTodayList = new LinkedList<User>();
-        userByName = new HashMap<String, User>();
+        userByID = new HashMap<Integer, User>();
         todayDate = new Date();
     }
 
     //Adds a user to the dictionary or updates if the person is already included
     public void addUser(User user){
-        if(userByName.get(user.name) != null){
-            Date savedDate = userByName.get(user.name).date;
+        if(userByID.get(user.getID()) != null){
+            Date savedDate = userByID.get(user.getID()).date;
             if(user.date.after(savedDate)){
-                userByName.put(user.name, user);
+                userByID.put(user.getID(), user);
             }
         }
         else{
-            userByName.put(user.name, user);
+            userByID.put(user.getID(), user);
         }
     }
 
     //Creates the two lists of users from the users in the dictionary
     public void createLists(){
-        for(String name : userByName.keySet()){
-            User user = userByName.get(name);
+        for(int id : userByID.keySet()){
+            User user = userByID.get(id);
             LinkedList<User> list;
 
             if(user.date.before(todayDate)){
@@ -76,17 +78,4 @@ public class PhoneLists {
         }
     }
 
-    //Print the two lists.
-    //@ToDo rewrite to print to file.
-    public void printLists() {
-        System.out.println("Før idag");
-        for(User user : beforeTodayList) {
-            System.out.println(user.name + " " + user.date);
-        }
-        System.out.println("Efter idag");
-        for(User user : afterTodayList) {
-            System.out.println(user.name + " " + user.date);
-        }
-
-    }
 }

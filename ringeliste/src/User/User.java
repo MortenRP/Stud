@@ -3,7 +3,6 @@ package User;
 import java.util.Date;
 
 
-
 /**
  * Created by GameMonkey on 03-08-2015.
  */
@@ -11,16 +10,31 @@ import java.util.Date;
 // data base.
 public class User {
 
-
+    private JobFunction jobFunction = null;
+    private String name = null;
+    private int userID;
+    //Public since everyone cen get and set it.
     public Date date = null;
-    public String name = null;
-    public String jobFunction = null;
 
-    public User (Date date, String name, String jobFunction){
+    public User (Date date, String name, int userID, JobFunction jobFunction){
         this.date = date;
         this.name = name;
+        this.userID = userID;
         this.jobFunction = jobFunction;
     }
+
+    public JobFunction getJobFunction(){
+        return jobFunction;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getID(){
+        return userID;
+    }
+
 
 }
 

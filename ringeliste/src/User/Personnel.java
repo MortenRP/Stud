@@ -18,11 +18,7 @@ public class Personnel {
     public static Personnel makeFromPersonnelFiles(String personnel, String salary){
         return new Personnel();
     }
-
-    //Method for making a calling list for xls format.
-    public void createCallingListExcel(){
-
-    }
+    
 
     //@ToDo Add error handling if user is in system already.
     private void addUser(String name, int ID, JobFunction jobFunction){

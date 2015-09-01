@@ -26,7 +26,7 @@ public class Personnel {
     private void generateUsers(){
         int columnFirstName =  personnelSheet.getColumnPos("Fornavn");
         int columnLastName =  personnelSheet.getColumnPos("Efternavn");
-        int columnID = personnelSheet.getColumnPos("Løn nr");
+        int columnID = personnelSheet.getColumnPos("Lønnummer");
 
         int rows = personnelSheet.getRows();
 

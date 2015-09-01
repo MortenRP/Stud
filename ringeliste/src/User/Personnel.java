@@ -38,7 +38,8 @@ public class Personnel {
             int userID = Integer.parseInt(personnelSheet.getCellContent(i, columnID));
 
             JobFunction jobFunction = getJobFunction(i);
-
+            User user = new User(name, userID, jobFunction);
+            usersByID.put(userID, user);
         }
     }
 
@@ -47,10 +48,23 @@ public class Personnel {
     }
 
     private JobFunction getJobFunction(int row){
-        //int columnAdmin = personnelSheet.getColumnPos("Personalegruppe: Administration");
+        int columnAdmin = personnelSheet.getColumnPos("Personalegruppe: Administration");
+        int columnBar = personnelSheet.getColumnPos("Personalegruppe: Bartender");
+        int columnMusic = personnelSheet.getColumnPos("Personalegruppe: Musikfrivillige");
+        int columnLight = personnelSheet.getColumnPos("Personalegruppe: Lysafvikler/Light Technician");
 
-
-        //if()
+        if(!personnelSheet.getCellContent(row, columnAdmin).isEmpty()){
+            return JobFunction.Other;
+        }
+        else if(!personnelSheet.getCellContent(row, columnBar).isEmpty()){
+            return JobFunction.Bartender;
+        }
+        else if(!personnelSheet.getCellContent(row, columnMusic).isEmpty()){
+            return JobFunction.Music;
+        }
+        else if(!personnelSheet.getCellContent(row, columnLight).isEmpty()){
+            return JobFunction.Light;
+        }
     }
 
     private int getHoursWorkedOfUser(int ID){

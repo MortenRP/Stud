@@ -19,8 +19,16 @@ public class SheetWorker {
         findColumns();
     }
 
-    public int getColumnsPos(String column){
+    public int getColumnPos(String column){
         return columnsByName.get(column);
+    }
+
+    public String getCellContent(int row, int column){
+        return sheet.getCell(row, column).getContents();
+    }
+
+    public int getRows(){
+        return sheet.getRows();
     }
 
     // Creates a HashMap of the columns by name and give their position.

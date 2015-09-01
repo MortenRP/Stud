@@ -23,6 +23,12 @@ public class User {
         this.jobFunction = jobFunction;
     }
 
+    public User(String name, int userID, JobFunction jobFunction){
+        this.name = name;
+        this.userID = userID;
+        this.jobFunction = jobFunction;
+    }
+
     public JobFunction getJobFunction(){
         return jobFunction;
     }

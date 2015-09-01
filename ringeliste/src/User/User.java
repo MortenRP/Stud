@@ -14,7 +14,7 @@ public class User {
     private String name = null;
     private int userID;
     private String phone;
-    private int hoursWorked;
+    private float hoursWorked = 0;
     //Public since everyone cen get and set it.
     public Date date = null;
 
@@ -50,6 +50,17 @@ public class User {
         return userID;
     }
 
+    public float getHoursWorked(){
+        return hoursWorked;
+    }
+
+    public String getPhone(){
+        return phone;
+    }
+
+    public void addShift(float hours){
+        hoursWorked += hours;
+    }
 
 }
 

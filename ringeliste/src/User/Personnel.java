@@ -15,11 +15,13 @@ public class Personnel {
     private SheetWorker volunteers;
     private SheetWorker shifts;
 
-    public Personnel(Sheet volunteers){
+    public Personnel(Sheet volunteers, Sheet shifts){
         this.volunteers = new SheetWorker(volunteers);
+        this.shifts = new SheetWorker(shifts);
 
         usersByID = new HashMap<>();
         generateUsers();
+        extractHoursWorked();
     }
 
 
@@ -88,6 +90,26 @@ public class Personnel {
         }
         else{
             return JobFunction.Other;
+        }
+    }
+
+    private void extractHoursWorked(){
+        int columnID = shifts.getColumnPos("Loen nr.");
+        int columnHours = shifts.getColumnPos("Betalte timer");
+
+        int rows = shifts.getRows();
+
+        for(int i = 1; i < rows; ++i){
+            String id = shifts.getCellContent(columnID, i);
+            if(!id.isEmpty()){
+                User user = usersByID.get(Integer.parseInt(id));
+                if(user != null) {
+                    float hours = Float.parseFloat(
+                            shifts.getCellContent(columnHours, i).replace(",", "."));
+                    user.addShift(hours);
+                }
+
+            }
         }
     }
 

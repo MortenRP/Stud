@@ -24,8 +24,7 @@ public class SheetWorker {
     }
 
     public String getCellContent(int column, int row){
-        String string = sheet.getCell(column, row).getContents();
-        return string;
+        return sheet.getCell(column, row).getContents();
     }
 
     public int getRows(){

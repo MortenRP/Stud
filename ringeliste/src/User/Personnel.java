@@ -14,10 +14,11 @@ public class Personnel {
     private HashMap<Integer, User> usersByID;
     private SheetWorker personnelSheet;
 
-    private Personnel(Sheet personnel){
+    public Personnel(Sheet personnel){
         this.personnelSheet = new SheetWorker(personnel);
 
         usersByID = new HashMap<>();
+        generateUsers();
     }
 
 
@@ -26,21 +27,25 @@ public class Personnel {
     private void generateUsers(){
         int columnFirstName =  personnelSheet.getColumnPos("Fornavn");
         int columnLastName =  personnelSheet.getColumnPos("Efternavn");
-        int columnID = personnelSheet.getColumnPos("Lønnummer");
+        int columnID = personnelSheet.getColumnPos("Loennummer");
 
         int rows = personnelSheet.getRows();
 
         for(int i = 1; i < rows; ++i){
-            String name = personnelSheet.getCellContent(i, columnFirstName)
+            String name = personnelSheet.getCellContent(columnFirstName, i)
                     + " "
-                    + personnelSheet.getCellContent(i, columnLastName);
+                    + personnelSheet.getCellContent(columnLastName, i);
 
-            int userID = Integer.parseInt(personnelSheet.getCellContent(i, columnID));
+            int userID = Integer.parseInt(personnelSheet.getCellContent(columnID, i));
 
             JobFunction jobFunction = getJobFunction(i);
             User user = new User(name, userID, jobFunction);
             usersByID.put(userID, user);
         }
+    }
+
+    public HashMap<Integer, User> getUsers(){
+        return usersByID;
     }
 
     public void updateUserDate(int ID, Date date){
@@ -64,6 +69,9 @@ public class Personnel {
         }
         else if(!personnelSheet.getCellContent(row, columnLight).isEmpty()){
             return JobFunction.Light;
+        }
+        else{
+            return JobFunction.Other;
         }
     }
 

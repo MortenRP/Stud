@@ -14,6 +14,7 @@ public class User {
     private String name = null;
     private int userID;
     private String phone;
+    private int hoursWorked;
     //Public since everyone cen get and set it.
     public Date date = null;
 

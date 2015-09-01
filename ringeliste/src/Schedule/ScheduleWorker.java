@@ -14,6 +14,9 @@ import java.util.HashMap;
 /**
  * Created by GameMonkey on 14-08-2015.
  */
+
+
+// @ToDo Check whether or not this class is deprecated when Sheet Worker is done
 public class ScheduleWorker {
 
     private HashMap<String, Integer> columnsByName;

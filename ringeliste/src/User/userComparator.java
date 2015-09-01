@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Created by GameMonkey on 01-09-2015.
  */
-public class userComparator implements Comparator<User> {
+public class UserComparator implements Comparator<User> {
     @Override
     public int compare(User o1, User o2) {
         float hours_1 = o1.getHoursWorked();

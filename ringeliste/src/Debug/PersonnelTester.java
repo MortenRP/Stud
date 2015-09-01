@@ -3,6 +3,7 @@ package Debug;
 import User.Personnel;
 import User.User;
 import User.JobFunction;
+import User.UserComparator;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -13,7 +14,11 @@ import jxl.write.WriteException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+
 
 /**
  * Created by GameMonkey on 01-09-2015.
@@ -64,7 +69,9 @@ public class PersonnelTester {
         int rowBar = 1;
         int rowMusic = 1;
 
-        for(User user : users.values()){
+        List<User> userList = new ArrayList<>(users.values());
+        Collections.sort(userList, new UserComparator());
+        for(User user : userList){
 
             int row;
             WritableSheet sheet;

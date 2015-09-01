@@ -29,7 +29,7 @@ public class PersonnelTester {
                     + user.getName()
                     + " Id: "
                     + user.getID()
-                    + " Job :"
+                    + " Job: "
                     + user.getJobFunction().toString());
         }
     }

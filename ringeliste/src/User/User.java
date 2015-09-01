@@ -13,6 +13,7 @@ public class User {
     private JobFunction jobFunction = null;
     private String name = null;
     private int userID;
+    private String phone;
     //Public since everyone cen get and set it.
     public Date date = null;
 
@@ -27,6 +28,13 @@ public class User {
         this.name = name;
         this.userID = userID;
         this.jobFunction = jobFunction;
+    }
+
+    public User(String name, int userID, JobFunction jobFunction, String phone){
+        this.name = name;
+        this.userID = userID;
+        this.jobFunction = jobFunction;
+        this.phone = phone;
     }
 
     public JobFunction getJobFunction(){

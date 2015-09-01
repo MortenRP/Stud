@@ -12,10 +12,11 @@ import java.util.HashMap;
 public class Personnel {
 
     private HashMap<Integer, User> usersByID;
-    private SheetWorker personnelSheet;
+    private SheetWorker volunteers;
+    private SheetWorker shifts;
 
-    public Personnel(Sheet personnel){
-        this.personnelSheet = new SheetWorker(personnel);
+    public Personnel(Sheet volunteers){
+        this.volunteers = new SheetWorker(volunteers);
 
         usersByID = new HashMap<>();
         generateUsers();
@@ -25,22 +26,37 @@ public class Personnel {
 
     //@ToDo Add error handling if user is in system already.
     private void generateUsers(){
-        int columnFirstName =  personnelSheet.getColumnPos("Fornavn");
-        int columnLastName =  personnelSheet.getColumnPos("Efternavn");
-        int columnID = personnelSheet.getColumnPos("Loennummer");
+        int columnFirstName =  volunteers.getColumnPos("Fornavn");
+        int columnLastName =  volunteers.getColumnPos("Efternavn");
+        int columnID = volunteers.getColumnPos("Loennummer");
+        int columnNumber = volunteers.getColumnPos("Mobil");
 
-        int rows = personnelSheet.getRows();
+        int rows = volunteers.getRows();
 
         for(int i = 1; i < rows; ++i){
-            String name = personnelSheet.getCellContent(columnFirstName, i)
+            String name = volunteers.getCellContent(columnFirstName, i)
                     + " "
-                    + personnelSheet.getCellContent(columnLastName, i);
+                    + volunteers.getCellContent(columnLastName, i);
 
-            int userID = Integer.parseInt(personnelSheet.getCellContent(columnID, i));
-
+            String userID = volunteers.getCellContent(columnID, i);
+            String number = volunteers.getCellContent(columnNumber, i);
             JobFunction jobFunction = getJobFunction(i);
-            User user = new User(name, userID, jobFunction);
-            usersByID.put(userID, user);
+
+            if(!userID.isEmpty()){
+                int id = Integer.parseInt(userID);
+                User user;
+
+                if(!number.isEmpty()){
+                    user = new User(name, id, jobFunction, number);
+                }
+                else{
+                    user = new User(name, id, jobFunction);
+                }
+
+                usersByID.put(id, user);
+
+            }
+
         }
     }
 
@@ -48,26 +64,26 @@ public class Personnel {
         return usersByID;
     }
 
-    public void updateUserDate(int ID, Date date){
+    public void updateUserDate(int userID, Date date){
 
     }
 
     private JobFunction getJobFunction(int row){
-        int columnAdmin = personnelSheet.getColumnPos("Personalegruppe: Administration");
-        int columnBar = personnelSheet.getColumnPos("Personalegruppe: Bartender");
-        int columnMusic = personnelSheet.getColumnPos("Personalegruppe: Musikfrivillige");
-        int columnLight = personnelSheet.getColumnPos("Personalegruppe: Lysafvikler/Light Technician");
+        int columnAdmin = volunteers.getColumnPos("Personalegruppe: Administration");
+        int columnBar = volunteers.getColumnPos("Personalegruppe: Bartender");
+        int columnMusic = volunteers.getColumnPos("Personalegruppe: Musikfrivillige");
+        int columnLight = volunteers.getColumnPos("Personalegruppe: Lysafvikler/Light Technician");
 
-        if(!personnelSheet.getCellContent(row, columnAdmin).isEmpty()){
+        if(!volunteers.getCellContent(columnAdmin, row).isEmpty()){
             return JobFunction.Other;
         }
-        else if(!personnelSheet.getCellContent(row, columnBar).isEmpty()){
+        else if(!volunteers.getCellContent(columnBar, row).isEmpty()){
             return JobFunction.Bartender;
         }
-        else if(!personnelSheet.getCellContent(row, columnMusic).isEmpty()){
+        else if(!volunteers.getCellContent(columnMusic, row).isEmpty()){
             return JobFunction.Music;
         }
-        else if(!personnelSheet.getCellContent(row, columnLight).isEmpty()){
+        else if(!volunteers.getCellContent(columnLight, row).isEmpty()){
             return JobFunction.Light;
         }
         else{

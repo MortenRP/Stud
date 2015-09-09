@@ -28,10 +28,10 @@ public class Personnel {
 
     //@ToDo Add error handling if user is in system already.
     private void generateUsers(){
-        int columnFirstName =  volunteers.getColumnPos("Fornavn");
-        int columnLastName =  volunteers.getColumnPos("Efternavn");
-        int columnID = volunteers.getColumnPos("Loennummer");
-        int columnNumber = volunteers.getColumnPos("Mobil");
+        int columnFirstName =  volunteers.getColumnPos("fornavn");
+        int columnLastName =  volunteers.getColumnPos("efternavn");
+        int columnID = volunteers.getColumnPos("loennummer");
+        int columnNumber = volunteers.getColumnPos("mobil");
 
         int rows = volunteers.getRows();
 
@@ -71,10 +71,10 @@ public class Personnel {
     }
 
     private JobFunction getJobFunction(int row){
-        int columnAdmin = volunteers.getColumnPos("Personalegruppe: Administration");
-        int columnBar = volunteers.getColumnPos("Personalegruppe: Bartender");
-        int columnMusic = volunteers.getColumnPos("Personalegruppe: Musikfrivillige");
-        int columnLight = volunteers.getColumnPos("Personalegruppe: Lysafvikler/Light Technician");
+        int columnAdmin = volunteers.getColumnPos("personalegruppe: administration");
+        int columnBar = volunteers.getColumnPos("personalegruppe: bartender");
+        int columnMusic = volunteers.getColumnPos("personalegruppe: musikfrivillige");
+        int columnLight = volunteers.getColumnPos("personalegruppe: lysafvikler/light technician");
 
         if(!volunteers.getCellContent(columnAdmin, row).isEmpty()){
             return JobFunction.Other;
@@ -94,8 +94,8 @@ public class Personnel {
     }
 
     private void extractHoursWorked(){
-        int columnID = shifts.getColumnPos("Loen nr.");
-        int columnHours = shifts.getColumnPos("Betalte timer");
+        int columnID = shifts.getColumnPos("loen nr.");
+        int columnHours = shifts.getColumnPos("betalte timer");
 
         int rows = shifts.getRows();
 

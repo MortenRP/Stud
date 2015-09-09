@@ -37,8 +37,16 @@ public class SheetWorker {
         columnsByName = new HashMap<String, Integer>();
         int columnSize = sheet.getColumns();
 
+        //gets columns and replace danish letters
         for(int i = 0; i < columnSize; ++i){
-            columnsByName.put(sheet.getCell(i, 0).getContents(), i);
+            String columnName = sheet.getCell(i, 0)
+                    .getContents()
+                    .toLowerCase()
+                    .replace("ø", "oe")
+                    .replace("å", "aa")
+                    .replace("æ", "ae");
+            System.out.println(columnName);
+            columnsByName.put(columnName, i);
         }
 
     }

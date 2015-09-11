@@ -90,7 +90,13 @@ public class PersonnelTester {
 
 
             Label navn = new Label(0, row, user.getName());
-            Label hours = new Label(1, row, Float.toString(user.getHoursWorked()));
+            Label hours = null;
+            if(user.getDates().size() != 0) {
+                hours = new Label(1, row, user.getDates().getLast().toString());
+            }
+            else {
+                hours = new Label(1, row, "");
+            }
             Label number = new Label(2, row, user.getPhone());
             Label function = new Label(3, row, user.getJobFunction().toString());
 
@@ -103,6 +109,11 @@ public class PersonnelTester {
                 for(Date date : user.getDates()){
                     System.out.println(date);
                 }
+
+                System.out.println(
+                        (-1) * user.getDates().getLast().compareTo(
+                                user.getDates().getFirst()
+                        ));
             }
         }
 

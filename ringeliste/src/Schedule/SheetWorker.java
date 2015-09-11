@@ -42,10 +42,10 @@ public class SheetWorker {
             String columnName = sheet.getCell(i, 0)
                     .getContents()
                     .toLowerCase()
-                    .replace("ø", "oe")
-                    .replace("å", "aa")
-                    .replace("æ", "ae");
-            System.out.println(columnName);
+                    .replace("ï¿½", "oe")
+                    .replace("ï¿½", "aa")
+                    .replace("ï¿½", "ae");
+            //System.out.println(columnName);
             columnsByName.put(columnName, i);
         }
 

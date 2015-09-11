@@ -3,6 +3,9 @@ package User;
 import Schedule.SheetWorker;
 import jxl.Sheet;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -96,6 +99,10 @@ public class Personnel {
     private void extractHoursWorked(){
         int columnID = shifts.getColumnPos("loen nr.");
         int columnHours = shifts.getColumnPos("betalte timer");
+        int columnDate = shifts.getColumnPos("dato");
+
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = null;
 
         int rows = shifts.getRows();
 
@@ -106,7 +113,13 @@ public class Personnel {
                 if(user != null) {
                     float hours = Float.parseFloat(
                             shifts.getCellContent(columnHours, i).replace(",", "."));
-                    user.addShift(hours);
+                    try {
+                         date = format.parse(shifts.getCellContent(columnDate, i));
+                    }
+                    catch(ParseException e){
+                        System.out.println(e);
+                    }
+                    user.addShift(hours, date);
                 }
 
             }

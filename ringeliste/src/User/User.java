@@ -1,6 +1,7 @@
 package User;
 
 import java.util.Date;
+import java.util.LinkedList;
 
 
 /**
@@ -13,6 +14,7 @@ public class User {
     private int userID;
     private String phone;
     private float hoursWorked = 0;
+    private LinkedList<Date> dates = new LinkedList<Date>();
     //Public since everyone cen get and set it.
     public Date date = null;
 
@@ -56,8 +58,13 @@ public class User {
         return phone;
     }
 
-    public void addShift(float hours){
+    public LinkedList<Date> getDates(){
+        return dates;
+    }
+
+    public void addShift(float hours, Date date){
         hoursWorked += hours;
+        dates.add(date);
     }
 
 }

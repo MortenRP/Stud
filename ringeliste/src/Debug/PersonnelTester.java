@@ -14,10 +14,7 @@ import jxl.write.WriteException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -101,6 +98,12 @@ public class PersonnelTester {
             sheet.addCell(hours);
             sheet.addCell(number);
             sheet.addCell(function);
+
+            if(user.getID() == 3){
+                for(Date date : user.getDates()){
+                    System.out.println(date);
+                }
+            }
         }
 
         callingList.write();

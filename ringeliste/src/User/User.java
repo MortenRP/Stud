@@ -6,8 +6,6 @@ import java.util.Date;
 /**
  * Created by GameMonkey on 03-08-2015.
  */
-// @ToDo Create unique ID for all volunteers. Can be found in the Excel (*.xls) file but should in the end be kept in a
-// data base.
 public class User {
 
     private JobFunction jobFunction = null;

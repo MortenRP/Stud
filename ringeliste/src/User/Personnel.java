@@ -69,10 +69,6 @@ public class Personnel {
         return usersByID;
     }
 
-    public void updateUserDate(int userID, Date date){
-
-    }
-
     private JobFunction getJobFunction(int row){
         int columnAdmin = volunteers.getColumnPos("personalegruppe: administration");
         int columnBar = volunteers.getColumnPos("personalegruppe: bartender");
@@ -122,14 +118,5 @@ public class Personnel {
             }
         }
     }
-
-    private int getHoursWorkedOfUser(int ID){
-        return 0;
-    }
-
-    private JobFunction getGroupOfUser(int ID){
-        return null;
-    }
-
-
+    
 }

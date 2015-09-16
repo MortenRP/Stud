@@ -98,7 +98,6 @@ public class Personnel {
 
     private void extractHoursWorked(){
         int columnID = shifts.getColumnPos("loen nr.");
-        int columnHours = shifts.getColumnPos("betalte timer");
         int columnDate = shifts.getColumnPos("dato");
 
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -111,15 +110,13 @@ public class Personnel {
             if(!id.isEmpty()){
                 User user = usersByID.get(Integer.parseInt(id));
                 if(user != null) {
-                    float hours = Float.parseFloat(
-                            shifts.getCellContent(columnHours, i).replace(",", "."));
                     try {
                          date = format.parse(shifts.getCellContent(columnDate, i));
                     }
                     catch(ParseException e){
                         System.out.println(e);
                     }
-                    user.addShift(hours, date);
+                    user.addShift(date);
                 }
 
             }

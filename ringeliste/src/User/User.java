@@ -13,8 +13,8 @@ public class User {
     private String name = null;
     private int userID;
     private String phone;
-    private float hoursWorked = 0;
-    private LinkedList<Date> dates = new LinkedList<Date>();
+    private LinkedList<Date> takenDates = new LinkedList<Date>();
+    private LinkedList<Date> futureDates = new LinkedList<Date>();
     //Public since everyone cen get and set it.
     public Date date = null;
 
@@ -50,21 +50,26 @@ public class User {
         return userID;
     }
 
-    public float getHoursWorked(){
-        return hoursWorked;
-    }
-
     public String getPhone(){
         return phone;
     }
 
-    public LinkedList<Date> getDates(){
-        return dates;
+    public LinkedList<Date> getTakenDates(){
+        return takenDates;
     }
 
-    public void addShift(float hours, Date date){
-        hoursWorked += hours;
-        dates.add(date);
+    public LinkedList<Date> getFutureDates(){
+        return futureDates;
+    }
+
+    public void addShift(Date date){
+        Date today = new Date();
+        if(date.before(today)) {
+            takenDates.add(date);
+        }
+        else{
+            futureDates.add(date);
+        }
     }
 
 }

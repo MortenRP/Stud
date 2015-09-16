@@ -26,41 +26,36 @@ public class PersonnelTester {
         Workbook usersWorkbook = Workbook.getWorkbook(usersFile);
         Sheet usersSheet = usersWorkbook.getSheet(0);
 
-        File shiftsFile = new File("src//Debug//shifts_spring_15.xls");
+        File shiftsFile = new File("src//Debug//test.xls");
         Workbook shiftsWorkbook = Workbook.getWorkbook(shiftsFile);
         Sheet shiftsSheet = shiftsWorkbook.getSheet(0);
 
         Personnel personnel = new Personnel(usersSheet, shiftsSheet);
 
         HashMap<Integer, User> users = personnel.getUsers();
-/*
-        for(User user : users.values()){
-            System.out.println("Name: "
-                    + user.getName()
-                    + " Id: "
-                    + user.getID()
-                    + " Job: "
-                    + user.getJobFunction().toString()
-                    + " Worked: "
-                    + user.getHoursWorked());
-        }
-        */
 
         String name = "calling_list.xls";
         WritableWorkbook callingList = Workbook.createWorkbook(new File(name));
         callingList.createSheet("Bar", 0);
         callingList.createSheet("Music-light", 1);
 
+        Date today = new Date();
+        System.out.println(today);
+
         for(WritableSheet sheet : callingList.getSheets()){
             Label label1 = new Label(0, 0, "Name");
             Label label2 = new Label(1, 0, "Hours worked");
             Label label3 = new Label(2, 0, "Number");
             Label label4 = new Label(3, 0, "Function");
+            Label label5 = new Label(4, 0, "Last Shift");
+            Label label6 = new Label(5, 0, "Next shift");
 
             sheet.addCell(label1);
             sheet.addCell(label2);
             sheet.addCell(label3);
             sheet.addCell(label4);
+            sheet.addCell(label5);
+            sheet.addCell(label6);
         }
 
         int rowBar = 1;
@@ -90,31 +85,33 @@ public class PersonnelTester {
 
 
             Label navn = new Label(0, row, user.getName());
-            Label hours = null;
-            if(user.getDates().size() != 0) {
-                hours = new Label(1, row, user.getDates().getLast().toString());
+            Label number = new Label(1, row, user.getPhone());
+            Label function = new Label(2, row, user.getJobFunction().toString());
+
+            Date lastShift = null;
+            if(user.getTakenDates().size() != 0){
+                lastShift = user.getTakenDates().getLast();
             }
-            else {
-                hours = new Label(1, row, "");
+
+            Date nextShift = null;
+            if(user.getFutureDates().size() != 0){
+                nextShift = user.getFutureDates().getFirst();
             }
-            Label number = new Label(2, row, user.getPhone());
-            Label function = new Label(3, row, user.getJobFunction().toString());
+
+            if(lastShift != null){
+                Label date = new Label(3, row, lastShift.toString());
+                sheet.addCell(date);
+            }
+
+            if(nextShift != null){
+                Label date = new Label(4, row, nextShift.toString());
+                sheet.addCell(date);
+            }
 
             sheet.addCell(navn);
-            sheet.addCell(hours);
             sheet.addCell(number);
             sheet.addCell(function);
 
-            if(user.getID() == 3){
-                for(Date date : user.getDates()){
-                    System.out.println(date);
-                }
-
-                System.out.println(
-                        (-1) * user.getDates().getLast().compareTo(
-                                user.getDates().getFirst()
-                        ));
-            }
         }
 
         callingList.write();

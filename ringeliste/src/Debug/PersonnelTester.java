@@ -44,18 +44,17 @@ public class PersonnelTester {
 
         for(WritableSheet sheet : callingList.getSheets()){
             Label label1 = new Label(0, 0, "Name");
-            Label label2 = new Label(1, 0, "Hours worked");
-            Label label3 = new Label(2, 0, "Number");
-            Label label4 = new Label(3, 0, "Function");
-            Label label5 = new Label(4, 0, "Last Shift");
-            Label label6 = new Label(5, 0, "Next shift");
+            Label label2 = new Label(1, 0, "Number");
+            Label label3 = new Label(2, 0, "Function");
+            Label label4 = new Label(3, 0, "Last Shift");
+            Label label5 = new Label(4, 0, "Next shift");
 
             sheet.addCell(label1);
             sheet.addCell(label2);
             sheet.addCell(label3);
             sheet.addCell(label4);
             sheet.addCell(label5);
-            sheet.addCell(label6);
+
         }
 
         int rowBar = 1;

@@ -6,6 +6,7 @@ import User.JobFunction;
 import User.UserComparator;
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
@@ -22,12 +23,18 @@ import java.util.*;
  */
 public class PersonnelTester {
     public static void main(String args[]) throws WriteException, BiffException, IOException {
+
+        //Thanks to this stackoverflow for solving the issue of encoding!
+        //http://stackoverflow.com/questions/7449285/character-encoding-in-excel-spreadsheet-and-what-java-charset-to-use-to-decode
+        WorkbookSettings ws = new WorkbookSettings();
+        ws.setEncoding("Cp1252");
+
         File usersFile = new File("src//Debug//userinfo.xls");
-        Workbook usersWorkbook = Workbook.getWorkbook(usersFile);
+        Workbook usersWorkbook = Workbook.getWorkbook(usersFile, ws);
         Sheet usersSheet = usersWorkbook.getSheet(0);
 
         File shiftsFile = new File("src//Debug//test.xls");
-        Workbook shiftsWorkbook = Workbook.getWorkbook(shiftsFile);
+        Workbook shiftsWorkbook = Workbook.getWorkbook(shiftsFile, ws);
         Sheet shiftsSheet = shiftsWorkbook.getSheet(0);
 
         Personnel personnel = new Personnel(usersSheet, shiftsSheet);

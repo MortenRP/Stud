@@ -1,7 +1,7 @@
 package Schedule;
 
 import jxl.Sheet;
-
+import java.text.Normalizer;
 import java.util.HashMap;
 
 /**
@@ -42,10 +42,10 @@ public class SheetWorker {
             String columnName = sheet.getCell(i, 0)
                     .getContents()
                     .toLowerCase()
-                    .replace("�", "oe")
-                    .replace("�", "aa")
-                    .replace("�", "ae");
-            //System.out.println(columnName);
+                    .replace("ø", "oe")
+                    .replace("å", "aa")
+                    .replace("æ", "ae");
+            System.out.println(columnName);
             columnsByName.put(columnName, i);
         }
 

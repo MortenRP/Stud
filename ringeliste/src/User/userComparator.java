@@ -1,7 +1,5 @@
 package User;
 
-import sun.awt.image.ImageWatched;
-
 import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
@@ -10,24 +8,6 @@ import java.util.LinkedList;
  * Created by GameMonkey on 01-09-2015.
  */
 public class UserComparator implements Comparator<User> {
-    /*
-    @Override
-    public int compare(User o1, User o2) {
-        float hours_1 = o1.getHoursWorked();
-        float hours_2 = o2.getHoursWorked();
-
-        if(hours_1 > hours_2){
-            return 1;
-        }
-        else if(hours_1 < hours_2){
-            return -1;
-        }
-        else{
-            return 0;
-        }
-
-    }
-    */
 
     @Override
     public int compare(User o1, User o2){
@@ -36,7 +16,6 @@ public class UserComparator implements Comparator<User> {
 
         LinkedList<Date> futureDates1 = o1.getFutureDates();
         LinkedList<Date> futureDates2 = o2.getFutureDates();
-
 
         // If the users are one equal in terms of shifts.
         if(takenDates1.size() == 0 && futureDates1.size() == 0){

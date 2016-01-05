@@ -27,6 +27,9 @@ public class Personnel {
         extractHoursWorked();
     }
 
+    public HashMap<Integer, User> getUsers(){
+        return usersByID;
+    }
 
 
     //@ToDo Add error handling if user is in system already.
@@ -63,10 +66,6 @@ public class Personnel {
             }
 
         }
-    }
-
-    public HashMap<Integer, User> getUsers(){
-        return usersByID;
     }
 
     private JobFunction getJobFunction(int row){

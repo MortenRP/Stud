@@ -45,7 +45,6 @@ public class SheetWorker {
                     .replace("ø", "oe")
                     .replace("å", "aa")
                     .replace("æ", "ae");
-            System.out.println(columnName);
             columnsByName.put(columnName, i);
         }
 

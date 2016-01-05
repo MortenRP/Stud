@@ -1,48 +1,54 @@
-package Debug;
+package Writers;
 
 import User.User;
 import User.JobFunction;
-import User.UserComparator;
-import Workers.PersonnelWorker;
-import jxl.Sheet;
+
 import jxl.Workbook;
-import jxl.WorkbookSettings;
-import jxl.read.biff.BiffException;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
-import jxl.write.WriteException;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.*;
-
+import java.util.Date;
+import java.util.List;
 
 /**
- * Created by GameMonkey on 01-09-2015.
+ * Created by GameMonkey on 05-01-2016.
  */
-public class PersonnelTester {
-    public static void main(String args[]) throws WriteException, BiffException, IOException {
+public class xlsWriter {
 
-        //Thanks to this stackoverflow for solving the issue of encoding!
-        //http://stackoverflow.com/questions/7449285/character-encoding-in-excel-spreadsheet-and-what-java-charset-to-use-to-decode
-        WorkbookSettings ws = new WorkbookSettings();
-        ws.setEncoding("Cp1252");
+    public final String fileName;
+    public final List<User> users;
 
-        File usersFile = new File("src//Debug//userinfo.xls");
-        Workbook usersWorkbook = Workbook.getWorkbook(usersFile, ws);
-        Sheet usersSheet = usersWorkbook.getSheet(0);
+    private WritableWorkbook callingList;
 
-        File shiftsFile = new File("src//Debug//test.xls");
-        Workbook shiftsWorkbook = Workbook.getWorkbook(shiftsFile, ws);
-        Sheet shiftsSheet = shiftsWorkbook.getSheet(0);
+    xlsWriter(String fileName, List<User> users){
+        this.fileName = fileName;
+        this.users = users;
 
-        Workers.PersonnelWorker personnel = new PersonnelWorker(usersSheet, shiftsSheet);
+        try{
+            initializeWorkbook();
+        }
+        catch (java.io.IOException e){
+            //Log error
+        }
+        catch (jxl.write.WriteException e)
+        {
+            //Log error
+        }
 
-        List<User> userList = personnel.getUsers();
+        try{
+            writeUsers();
+        }
+        catch (jxl.write.WriteException e)
+        {
+            //Log error
+        }
+    }
 
-        String name = "calling_list.xls";
-        WritableWorkbook callingList = Workbook.createWorkbook(new File(name));
+    private void initializeWorkbook() throws java.io.IOException, jxl.write.WriteException{
+        callingList = Workbook.createWorkbook(new File(fileName));
+
         callingList.createSheet("Bar", 0);
         callingList.createSheet("Music-light", 1);
 
@@ -61,13 +67,14 @@ public class PersonnelTester {
             sheet.addCell(label3);
             sheet.addCell(label4);
             sheet.addCell(label5);
-
         }
+    }
 
+    private void writeUsers() throws jxl.write.WriteException{
         int rowBar = 1;
         int rowMusic = 1;
 
-        for(User user : userList){
+        for(User user : users){
 
             int row;
             WritableSheet sheet;
@@ -88,7 +95,7 @@ public class PersonnelTester {
             }
 
 
-            Label navn = new Label(0, row, user.getName());
+            Label name = new Label(0, row, user.getName());
             Label number = new Label(1, row, user.getPhone());
             Label function = new Label(2, row, user.getJobFunction().toString());
 
@@ -112,14 +119,10 @@ public class PersonnelTester {
                 sheet.addCell(date);
             }
 
-            sheet.addCell(navn);
+            sheet.addCell(name);
             sheet.addCell(number);
             sheet.addCell(function);
 
         }
-
-        callingList.write();
-        callingList.close();
     }
-
 }

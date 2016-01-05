@@ -2,14 +2,13 @@ package Workers;
 
 import User.User;
 import User.JobFunction;
-import Workers.SheetWorker;
+import User.UserComparator;
 import jxl.Sheet;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by GameMonkey on 26-08-2015.
@@ -29,8 +28,10 @@ public class PersonnelWorker {
         extractHoursWorked();
     }
 
-    public HashMap<Integer, User> getUsers(){
-        return usersByID;
+    public List<User> getUsers(){
+        List<User> userList = new ArrayList<>(usersByID.values());
+        Collections.sort(userList, new UserComparator());
+        return userList;
     }
 
 

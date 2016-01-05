@@ -22,12 +22,16 @@ public class xlsWriter {
 
     private WritableWorkbook callingList;
 
-    xlsWriter(String fileName, List<User> users){
+    public xlsWriter(String fileName, List<User> users){
         this.fileName = fileName;
         this.users = users;
 
         try{
             initializeWorkbook();
+            writeUsers();
+
+            callingList.write();
+            callingList.close();
         }
         catch (java.io.IOException e){
             //Log error
@@ -37,13 +41,6 @@ public class xlsWriter {
             //Log error
         }
 
-        try{
-            writeUsers();
-        }
-        catch (jxl.write.WriteException e)
-        {
-            //Log error
-        }
     }
 
     private void initializeWorkbook() throws java.io.IOException, jxl.write.WriteException{
@@ -67,6 +64,12 @@ public class xlsWriter {
             sheet.addCell(label3);
             sheet.addCell(label4);
             sheet.addCell(label5);
+
+            sheet.setColumnView(0, 30);
+            sheet.setColumnView(1, 15);
+            sheet.setColumnView(2, 15);
+            sheet.setColumnView(3, 35);
+            sheet.setColumnView(4, 35);
         }
     }
 

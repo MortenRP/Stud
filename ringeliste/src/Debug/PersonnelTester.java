@@ -1,9 +1,9 @@
 package Debug;
 
-import User.Personnel;
 import User.User;
 import User.JobFunction;
 import User.UserComparator;
+import Workers.PersonnelWorker;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
@@ -37,7 +37,7 @@ public class PersonnelTester {
         Workbook shiftsWorkbook = Workbook.getWorkbook(shiftsFile, ws);
         Sheet shiftsSheet = shiftsWorkbook.getSheet(0);
 
-        Personnel personnel = new Personnel(usersSheet, shiftsSheet);
+        Workers.PersonnelWorker personnel = new PersonnelWorker(usersSheet, shiftsSheet);
 
         HashMap<Integer, User> users = personnel.getUsers();
 

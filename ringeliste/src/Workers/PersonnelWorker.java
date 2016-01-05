@@ -1,6 +1,8 @@
-package User;
+package Workers;
 
-import Schedule.SheetWorker;
+import User.User;
+import User.JobFunction;
+import Workers.SheetWorker;
 import jxl.Sheet;
 
 import java.text.DateFormat;
@@ -12,13 +14,13 @@ import java.util.HashMap;
 /**
  * Created by GameMonkey on 26-08-2015.
  */
-public class Personnel {
+public class PersonnelWorker {
 
     private HashMap<Integer, User> usersByID;
     private SheetWorker volunteers;
     private SheetWorker shifts;
 
-    public Personnel(Sheet volunteers, Sheet shifts){
+    public PersonnelWorker(Sheet volunteers, Sheet shifts){
         this.volunteers = new SheetWorker(volunteers);
         this.shifts = new SheetWorker(shifts);
 

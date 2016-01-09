@@ -29,11 +29,11 @@ public class PersonnelTester {
         WorkbookSettings ws = new WorkbookSettings();
         ws.setEncoding("Cp1252");
 
-        File usersFile = new File("src//Debug//userinfo.xls");
+        File usersFile = new File("src//Debug//users.xls");
         Workbook usersWorkbook = Workbook.getWorkbook(usersFile, ws);
         Sheet usersSheet = usersWorkbook.getSheet(0);
 
-        File shiftsFile = new File("src//Debug//test.xls");
+        File shiftsFile = new File("src//Debug//shifts.xls");
         Workbook shiftsWorkbook = Workbook.getWorkbook(shiftsFile, ws);
         Sheet shiftsSheet = shiftsWorkbook.getSheet(0);
 

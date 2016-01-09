@@ -25,11 +25,11 @@ public class xlsWriterTester {
         WorkbookSettings ws = new WorkbookSettings();
         ws.setEncoding("Cp1252");
 
-        File usersFile = new File("src//Debug//userinfo.xls");
+        File usersFile = new File("userinfo.xls");
         Workbook usersWorkbook = Workbook.getWorkbook(usersFile, ws);
         Sheet usersSheet = usersWorkbook.getSheet(0);
 
-        File shiftsFile = new File("src//Debug//test.xls");
+        File shiftsFile = new File("test.xls");
         Workbook shiftsWorkbook = Workbook.getWorkbook(shiftsFile, ws);
         Sheet shiftsSheet = shiftsWorkbook.getSheet(0);
 

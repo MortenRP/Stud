@@ -1,9 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="ringeliste:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/ringeliste_jar</output-path>
+  <artifact type="jar" name="calling_list:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/calling_list_jar</output-path>
     <root id="archive" name="ringeliste.jar">
       <element id="module-output" name="ringeliste" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../jexcelapi/jxl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../log4/log4j-1.2.17.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

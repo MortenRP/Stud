@@ -9,6 +9,8 @@ import jxl.WorkbookSettings;
 import Writers.Log4jUncaughtExceptionHandler;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -73,5 +75,14 @@ public class xlsWriterTester {
 
         String name = "calling_list.xls";
         xlsWriter writer = new xlsWriter(name, userList);
+
+        try{
+            Files.delete(Paths.get("users.xls"));
+            Files.delete(Paths.get("shifts.xls"));
+        }
+        catch (java.io.IOException e){
+            logger.error("Error deleting files", e);
+            System.exit(1);
+        }
     }
 }

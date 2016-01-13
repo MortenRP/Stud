@@ -115,6 +115,7 @@ public class PersonnelWorker {
                     }
                     catch(ParseException e){
                         logger.error("Error parsing date", e);
+                        System.exit(1);
                     }
                     user.addShift(date);
                 }

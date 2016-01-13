@@ -7,6 +7,7 @@ import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.util.Date;
@@ -21,8 +22,10 @@ public class xlsWriter {
     public final List<User> users;
 
     private WritableWorkbook callingList;
+    private static final Logger logger = Logger.getRootLogger();
 
     public xlsWriter(String fileName, List<User> users){
+
         this.fileName = fileName;
         this.users = users;
 
@@ -34,11 +37,11 @@ public class xlsWriter {
             callingList.close();
         }
         catch (java.io.IOException e){
-            //Log error
+            logger.error("Error in xlsWriter", e);
         }
         catch (jxl.write.WriteException e)
         {
-            //Log error
+            logger.error("Error in xlsWriter", e);
         }
 
     }

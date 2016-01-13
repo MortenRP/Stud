@@ -4,6 +4,7 @@ import User.User;
 import User.JobFunction;
 import User.UserComparator;
 import jxl.Sheet;
+import org.apache.log4j.Logger;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,6 +19,7 @@ public class PersonnelWorker {
     private HashMap<Integer, User> usersByID;
     private SheetWorker volunteers;
     private SheetWorker shifts;
+    private static final Logger logger = Logger.getRootLogger();
 
     public PersonnelWorker(Sheet volunteers, Sheet shifts){
         this.volunteers = new SheetWorker(volunteers);
@@ -112,7 +114,7 @@ public class PersonnelWorker {
                          date = format.parse(shifts.getCellContent(columnDate, i));
                     }
                     catch(ParseException e){
-                        System.out.println(e);
+                        logger.error("Error parsing date", e);
                     }
                     user.addShift(date);
                 }

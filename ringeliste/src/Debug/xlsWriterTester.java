@@ -52,7 +52,7 @@ public class xlsWriterTester {
             usersWorkbook = Workbook.getWorkbook(usersFile, ws);
         }
         catch (java.io.IOException | jxl.read.biff.BiffException e){
-            logger.error("Error in creating users", e);
+            logger.error("Error with users.xls", e);
             System.exit(1);
         }
         Sheet usersSheet = usersWorkbook.getSheet(0);
@@ -64,7 +64,7 @@ public class xlsWriterTester {
             shiftsWorkbook = Workbook.getWorkbook(shiftsFile, ws);
         }
         catch (java.io.IOException | jxl.read.biff.BiffException e){
-            logger.error("Error in handling shifts", e);
+            logger.error("Error with shifts.xls", e);
             System.exit(1);
         }
         Sheet shiftsSheet = shiftsWorkbook.getSheet(0);
@@ -76,6 +76,7 @@ public class xlsWriterTester {
         String name = "calling_list.xls";
         xlsWriter writer = new xlsWriter(name, userList);
 
+        //Deleting used files and also the error.log if it is empty.
         try{
             Files.delete(Paths.get("users.xls"));
             Files.delete(Paths.get("shifts.xls"));

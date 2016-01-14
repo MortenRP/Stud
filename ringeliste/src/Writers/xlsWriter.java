@@ -37,11 +37,11 @@ public class xlsWriter {
             callingList.close();
         }
         catch (java.io.IOException e){
-            logger.error("Error in xlsWriter", e);
+            logger.error("Error in xlsWriter by IOException.", e);
         }
         catch (jxl.write.WriteException e)
         {
-            logger.error("Error in xlsWriter", e);
+            logger.error("Error in xlsWriter by WriteException", e);
         }
 
     }

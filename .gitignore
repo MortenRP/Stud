@@ -12,8 +12,8 @@ ringeliste/out
 **/*.swp
 **/*.DS_STORE
 
-#The generated schedule
-**/updated_schedule.xls
+#The excel documents
+**/*.xls
 
 **/.idea/workspace.xml
 **/.idea/tasks.xml

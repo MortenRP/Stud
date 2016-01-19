@@ -27,6 +27,7 @@ public class ColumnNameWorker {
 
     public ColumnNameWorker(){
         setDanishMappings();
+        setEnglishMappings();
     }
 
     public String mapColumnName(String name){
@@ -46,5 +47,20 @@ public class ColumnNameWorker {
 
         nameMap.put("løn nr.", id);
         nameMap.put("dato", date);
+    }
+
+    private void setEnglishMappings(){
+        nameMap.put("first name", firstName);
+        nameMap.put("last name", lastName);
+        nameMap.put("salary identifier", id);
+        nameMap.put("mobile", number);
+
+        nameMap.put("employee group: administration", adm);
+        nameMap.put("employee group: bartender", bar);
+        nameMap.put("employee group: musikfrivillige", music);
+        nameMap.put("employee group: lysafvikler/light technician", light);
+
+        //nameMap.put("løn nr.", id);
+        nameMap.put("date", date);
     }
 }

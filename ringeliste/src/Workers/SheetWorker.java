@@ -11,6 +11,7 @@ public class SheetWorker {
 
     private Sheet sheet;
     private HashMap<String,Integer> columnsByName;
+    private ColumnNameWorker columnNameWorker = new ColumnNameWorker();
 
 
     public SheetWorker(Sheet sheet){
@@ -41,11 +42,14 @@ public class SheetWorker {
         for(int i = 0; i < columnSize; ++i){
             String columnName = sheet.getCell(i, 0)
                     .getContents()
-                    .toLowerCase()
-                    .replace("ø", "oe")
-                    .replace("å", "aa")
-                    .replace("æ", "ae");
-            columnsByName.put(columnName, i);
+                    .toLowerCase();
+            columnName = columnNameWorker.mapColumnName(columnName);
+
+            if(columnName != null){
+                columnsByName.put(columnName, i);
+            }
+
+
         }
 
     }

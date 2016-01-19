@@ -20,6 +20,7 @@ public class PersonnelWorker {
     private SheetWorker volunteers;
     private SheetWorker shifts;
     private static final Logger logger = Logger.getRootLogger();
+    private ColumnNameWorker columnNameWorker = new ColumnNameWorker();
 
     public PersonnelWorker(Sheet volunteers, Sheet shifts){
         this.volunteers = new SheetWorker(volunteers);
@@ -39,10 +40,10 @@ public class PersonnelWorker {
 
     //@ToDo Add error handling if user is in system already.
     private void generateUsers(){
-        int columnFirstName =  volunteers.getColumnPos("fornavn");
-        int columnLastName =  volunteers.getColumnPos("efternavn");
-        int columnID = volunteers.getColumnPos("loennummer");
-        int columnNumber = volunteers.getColumnPos("mobil");
+        int columnFirstName =  volunteers.getColumnPos(columnNameWorker.firstName);
+        int columnLastName =  volunteers.getColumnPos(columnNameWorker.lastName);
+        int columnID = volunteers.getColumnPos(columnNameWorker.id);
+        int columnNumber = volunteers.getColumnPos(columnNameWorker.number);
 
         int rows = volunteers.getRows();
 
@@ -74,10 +75,10 @@ public class PersonnelWorker {
     }
 
     private JobFunction getJobFunction(int row){
-        int columnAdmin = volunteers.getColumnPos("personalegruppe: administration");
-        int columnBar = volunteers.getColumnPos("personalegruppe: bartender");
-        int columnMusic = volunteers.getColumnPos("personalegruppe: musikfrivillige");
-        int columnLight = volunteers.getColumnPos("personalegruppe: lysafvikler/light technician");
+        int columnAdmin = volunteers.getColumnPos(columnNameWorker.adm);
+        int columnBar = volunteers.getColumnPos(columnNameWorker.bar);
+        int columnMusic = volunteers.getColumnPos(columnNameWorker.music);
+        int columnLight = volunteers.getColumnPos(columnNameWorker.light);
 
         if(!volunteers.getCellContent(columnAdmin, row).isEmpty()){
             return JobFunction.Other;
@@ -97,8 +98,8 @@ public class PersonnelWorker {
     }
 
     private void extractHoursWorked(){
-        int columnID = shifts.getColumnPos("loen nr.");
-        int columnDate = shifts.getColumnPos("dato");
+        int columnID = shifts.getColumnPos(columnNameWorker.id);
+        int columnDate = shifts.getColumnPos(columnNameWorker.date);
 
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         Date date = null;

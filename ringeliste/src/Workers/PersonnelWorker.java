@@ -83,6 +83,9 @@ public class PersonnelWorker {
         if(!volunteers.getCellContent(columnAdmin, row).isEmpty()){
             return JobFunction.Other;
         }
+        else if(isChief(row)){
+            return JobFunction.Chief;
+        }
         else if(!volunteers.getCellContent(columnBar, row).isEmpty()){
             return JobFunction.Bartender;
         }
@@ -95,6 +98,26 @@ public class PersonnelWorker {
         else{
             return JobFunction.Other;
         }
+    }
+
+    private boolean isChief(int row){
+        boolean isChief = false;
+
+        int columnBarchief = volunteers.getColumnPos(columnNameWorker.barchief);
+        int columnMusicchief  = volunteers.getColumnPos(columnNameWorker.musicchief);
+        int columnLightchief = volunteers.getColumnPos(columnNameWorker.lightchief);
+
+        if(!volunteers.getCellContent(columnBarchief, row).isEmpty()){
+            isChief = true;
+        }
+        else if(!volunteers.getCellContent(columnLightchief, row).isEmpty()){
+            isChief = true;
+        }
+        else if(!volunteers.getCellContent(columnMusicchief, row).isEmpty()){
+            isChief = true;
+        }
+
+        return isChief;
     }
 
     private void extractHoursWorked(){

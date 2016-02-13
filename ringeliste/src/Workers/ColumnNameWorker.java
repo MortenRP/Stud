@@ -22,6 +22,11 @@ public class ColumnNameWorker {
     public final String music = "music";
     public final String light = "light";
 
+    //Chief groups
+    public final String barchief = "barchief";
+    public final String musicchief = "musicchief";
+    public final String lightchief = "lightchief";
+
     //Shift info
     public final String date = "date";
 
@@ -45,6 +50,10 @@ public class ColumnNameWorker {
         nameMap.put("personalegruppe: musikfrivillige", music);
         nameMap.put("personalegruppe: lysafvikler/light technician", light);
 
+        nameMap.put("personalegruppe: barhøvding/bar bhief", barchief);
+        nameMap.put("personalegruppe: busikhøvding/music chief", musicchief);
+        nameMap.put("personalegruppe: lyshøvding", lightchief);
+
         nameMap.put("løn nr.", id);
         nameMap.put("dato", date);
     }
@@ -60,7 +69,11 @@ public class ColumnNameWorker {
         nameMap.put("employee group: musikfrivillige", music);
         nameMap.put("employee group: lysafvikler/light technician", light);
 
-        //nameMap.put("løn nr.", id);
+        nameMap.put("employee group: barhøvding/bar chief", barchief);
+        nameMap.put("employee group: musikhøvding/music chief", musicchief);
+        nameMap.put("employee group: lyshøvding", lightchief);
+
+        //nameMap.put("salary identifier", id); //Already included
         nameMap.put("date", date);
     }
 }

@@ -21,7 +21,6 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class xlsWriterTester {
 
-    //private static final Logger logger = Logger.getLogger(xlsWriterTester.class);
     private static final Logger logger = Logger.getRootLogger();
 
     public static void main(String args[]) {

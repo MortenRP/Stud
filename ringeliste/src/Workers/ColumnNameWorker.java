@@ -50,7 +50,7 @@ public class ColumnNameWorker {
         nameMap.put("personalegruppe: musikfrivillige", music);
         nameMap.put("personalegruppe: lysafvikler/light technician", light);
 
-        nameMap.put("personalegruppe: barhøvding/bar bhief", barchief);
+        nameMap.put("personalegruppe: barhøvding/bar chief", barchief);
         nameMap.put("personalegruppe: busikhøvding/music chief", musicchief);
         nameMap.put("personalegruppe: lyshøvding", lightchief);
 
